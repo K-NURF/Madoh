@@ -20,8 +20,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -43,32 +48,50 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.madoh.ui.theme.MadohTheme
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MadohTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
-                ) {
-                    Scaffold( topBar = { WelcomeCard(name = "Franklin") }
-                    , floatingActionButton = {})
-                    {
-                       Transactions(it)
-                    }
-
-                }
+                    Content()
             }
         }
     }
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun Welcome(navController: NavHostController?= null){
+    Scaffold( topBar = { WelcomeCard(name = "Franklin") }
+        , floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    navController?.navigate("addTransaction")
+                },
+                content = {
+                    Icon(
+                        imageVector = Icons.Filled.Add,
+                        contentDescription = "Add Expense or Income"
+                    )
+                }
+            )
+        }
+    )
+    {
+        Transactions(it)
+    }
+}
+
+@Preview
+@Composable
+fun PreviewWelcome () {
+    Welcome()
 }
 
 @Composable
@@ -84,9 +107,10 @@ Box (modifier = Modifier
     .background(color = Color.Blue)){
             Row (
                 modifier = Modifier
-                    .absolutePadding(top = (ss/4).dp,
-                        left = (deviceWidth/20).dp
-                        )
+                    .absolutePadding(
+                        top = (ss / 4).dp,
+                        left = (deviceWidth / 20).dp
+                    )
                     .clip(RoundedCornerShape(16.dp))
                     .background(color = Color.White)
                     .padding(10.dp),
