@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.absolutePadding
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,14 +21,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -48,8 +45,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.example.madoh.data.FillerData
+import com.example.madoh.ui.navigation.BottomNav
+import com.example.madoh.ui.navigation.Content
 import com.example.madoh.ui.theme.MadohTheme
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -67,12 +66,12 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Welcome(navController: NavHostController?= null){
+fun Welcome(navController: NavHostController){
     Scaffold( topBar = { WelcomeCard(name = "Franklin") }
         , floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    navController?.navigate("addTransaction")
+                    navController.navigate("addTransaction")
                 },
                 content = {
                     Icon(
@@ -81,7 +80,7 @@ fun Welcome(navController: NavHostController?= null){
                     )
                 }
             )
-        }
+        }, bottomBar = { BottomNav(navController = navController)}
     )
     {
         Transactions(it)
@@ -91,7 +90,7 @@ fun Welcome(navController: NavHostController?= null){
 @Preview
 @Composable
 fun PreviewWelcome () {
-    Welcome()
+//    Welcome()
 }
 
 @Composable

@@ -1,4 +1,4 @@
-package com.example.madoh
+package com.example.madoh.ui.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -8,6 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.madoh.Welcome
+import com.example.madoh.ui.navigation.Routes.NAV_ACC
+import com.example.madoh.ui.navigation.Routes.NAV_HOME
+import com.example.madoh.ui.navigation.Routes.NAV_STATS
 
 @Composable
 fun Content () {
@@ -18,12 +22,13 @@ fun Content () {
         color = MaterialTheme.colorScheme.background
     ) {
         NavHost(navController = navController,
-            startDestination = "home",
+            startDestination = NAV_HOME,
             ) {
-            composable("home"){
-                Welcome()
+            composable(NAV_HOME){
+                Welcome(navController)
             }
-            composable("addTransaction"){}
+            composable(NAV_STATS){}
+            composable(NAV_ACC){}
         }
 
     }

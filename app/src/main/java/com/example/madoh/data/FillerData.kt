@@ -1,5 +1,7 @@
-package com.example.madoh
+package com.example.madoh.data
 
+import com.example.madoh.Transaction
+import com.example.madoh.TransactionDay
 import java.util.Date
 
 object FillerData {
