@@ -12,6 +12,7 @@ import com.example.madoh.Welcome
 import com.example.madoh.ui.navigation.Routes.NAV_ACC
 import com.example.madoh.ui.navigation.Routes.NAV_HOME
 import com.example.madoh.ui.navigation.Routes.NAV_STATS
+import com.example.madoh.ui.navigation.Routes.NAV_TRANSACTION
 
 @Composable
 fun Content () {
@@ -29,6 +30,7 @@ fun Content () {
             }
             composable(NAV_STATS){}
             composable(NAV_ACC){}
+            composable(NAV_TRANSACTION){}
         }
 
     }

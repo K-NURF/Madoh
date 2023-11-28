@@ -49,6 +49,7 @@ import androidx.navigation.NavHostController
 import com.example.madoh.data.FillerData
 import com.example.madoh.ui.navigation.BottomNav
 import com.example.madoh.ui.navigation.Content
+import com.example.madoh.ui.navigation.Routes.NAV_TRANSACTION
 import com.example.madoh.ui.theme.MadohTheme
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -71,7 +72,7 @@ fun Welcome(navController: NavHostController){
         , floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    navController.navigate("addTransaction")
+                    navController.navigate(NAV_TRANSACTION)
                 },
                 content = {
                     Icon(

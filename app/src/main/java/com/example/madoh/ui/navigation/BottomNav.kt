@@ -1,16 +1,19 @@
 package com.example.madoh.ui.navigation
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.madoh.R
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
@@ -30,6 +33,7 @@ fun BottomNav(
             onClick = {
                       navController.navigate(item.navRoute)
                       },
+            modifier = Modifier.padding(top = 5.dp),
             selectedContentColor = Color.White,
             unselectedContentColor = Color.White.copy(0.4f),
             icon = { Icon(painter = painterResource(id = item.icon), contentDescription = "") },
