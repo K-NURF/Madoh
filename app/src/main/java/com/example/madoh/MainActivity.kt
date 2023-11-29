@@ -7,9 +7,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+//import androidx.compose.foundation.layout.BoxScopeInstance.align
 import androidx.compose.foundation.layout.Column
+//import androidx.compose.foundation.layout.FlowRowScopeInstance.align
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+//import androidx.compose.foundation.layout.RowScopeInstance.align
 import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -40,6 +43,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -259,8 +263,33 @@ fun TransactionItem(transaction: Transaction) {
         )
     }
 }
+@Composable
+fun SettingsUI() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            // curved corner just at the bottom
+            //.clip(RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp))
+            .padding(bottom = 8.dp)
+            .background(Color.Blue),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        // Centered Text.
+        Text(
+            text = "Settings",
+            color = Color.White,
+            modifier = Modifier.padding(16.dp),
+            textAlign = TextAlign.Center,
+        )
+    }
+}
 
 @Preview(showBackground = true)
+@Composable
+fun SettingPreview() {
+    SettingsUI()
+}
+
 @Composable
 fun PreviewTransactionCard() {
     MadohTheme {
@@ -268,3 +297,11 @@ fun PreviewTransactionCard() {
         sampleData?.let { TransactionCard(it) }
     }
 }
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewSetting(){
+    SettingsUI()
+}
+
