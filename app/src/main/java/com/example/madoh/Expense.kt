@@ -55,7 +55,7 @@ fun Expense() {
             Row {
                 Text(text = "< Sep 2023 >",
                     style = TextStyle(
-                        fontSize = 24.sp,
+                        fontSize = 32.sp,
                         color = Color.White
                     )
 
