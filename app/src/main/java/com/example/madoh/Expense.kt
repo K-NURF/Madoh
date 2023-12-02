@@ -25,6 +25,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -62,12 +63,13 @@ fun Expense() {
                 )
             }
         }
-        val amountText = remember { mutableStateOf("Amount") }
-        val feesText = remember { mutableStateOf("Fees") }
-        val categoryText = remember { mutableStateOf("Category") }
-        val accountText = remember { mutableStateOf("Account") }
-        val noteText = remember { mutableStateOf("Note") }
-        val descriptionText = remember { mutableStateOf("Description") }
+
+        val amountText = remember { mutableStateOf("") }
+        val feesText = remember { mutableStateOf("") }
+        val categoryText = remember { mutableStateOf("") }
+        val accountText = remember { mutableStateOf("") }
+        val noteText = remember { mutableStateOf("") }
+        val descriptionText = remember { mutableStateOf("") }
 
         for (pair in listOf(
             "Amount" to amountText,
@@ -80,27 +82,34 @@ fun Expense() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp)
+                    .padding(vertical = 8.dp, horizontal = 10.dp)
             ) {
                 Text(
                     text = pair.first,
                     modifier = Modifier
                         .width(100.dp)
-                        .padding(end = 4.dp)
+                        .padding(end = 4.dp, top = 15.dp)
                 )
                 TextField(
                     value = pair.second.value,
-                    onValueChange = { newText -> pair.second.value = newText },
+                    onValueChange = { pair.second.value = it },
+                    placeholder = {pair.first},
                     modifier = Modifier
                         .weight(1f)
-                        .height(65.dp)
                         .fillMaxWidth()
                         .background(Color.White)
                         .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
-                        .padding(8.dp),
+                        .padding(8.dp)
                 )
             }
         }
     }
 }
 
+@Preview
+@Composable
+fun ViewExpenses(){
+    Surface {
+       Expense()
+    }
+}
