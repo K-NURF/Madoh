@@ -33,7 +33,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -57,10 +56,9 @@ import androidx.compose.ui.unit.sp
 import java.util.Calendar
 import java.util.Date
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Expense() {
+fun Income() {
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -163,7 +161,6 @@ fun Expense() {
         }
 
         val amountText = remember { mutableStateOf("Amount") }
-        val feesText = remember { mutableStateOf("Fees") }
         val categoryText = remember { mutableStateOf("Category") }
         val accountText = remember { mutableStateOf("Account") }
         val noteText = remember { mutableStateOf("Note") }
@@ -171,7 +168,6 @@ fun Expense() {
 
         for (pair in listOf(
             "Amount" to amountText,
-            "Fees" to feesText,
         )) {
             Row(
                 modifier = Modifier
@@ -220,9 +216,10 @@ fun Expense() {
                     onValueChange = { newText -> pair.second.value = newText },
                     modifier = Modifier
                         .weight(1f)
+                        .height(65.dp)
                         .fillMaxWidth()
                         .background(Color.White)
-                        .padding(8.dp)
+                        .padding(8.dp),
                 )
             }
         }
@@ -246,71 +243,5 @@ fun Expense() {
                 Text(text = "Continue")
             }
         }
-    }
-}
-
-@Composable
-fun showDatePicker(){
-
-    val context = LocalContext.current
-    val year: Int
-    val month: Int
-    val day: Int
-
-    val calendar = Calendar.getInstance()
-    year = calendar.get(Calendar.YEAR)
-    month = calendar.get(Calendar.MONTH)
-    day = calendar.get(Calendar.DAY_OF_MONTH)
-    calendar.time = Date()
-
-    val date = remember { mutableStateOf("") }
-    val datePickerDialog = DatePickerDialog(
-        context,
-        { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-            date.value = "$dayOfMonth/$month/$year"
-        }, year, month, day
-    )
-
-    Row(
-
-    ) {
-
-        Text(text = "Date",
-            style = TextStyle(
-                fontSize = 16.sp,
-
-                ))
-        Spacer(modifier = Modifier.size(72.dp))
-
-        Text(text = buildAnnotatedString {
-            withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
-                append("            ${date.value}                           ")
-            }
-        },
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-                .background(Color.White)
-                .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
-                .padding(8.dp)
-                .height(30.dp)
-                .clickable {
-                    datePickerDialog.show()
-                },
-            style = TextStyle(
-                fontSize = 16.sp,
-
-                ))
-
-        Spacer(modifier = Modifier.size(16.dp))
-
-    }
-
-}
-@Preview
-@Composable
-fun ViewExpenses(){
-    Surface {
-       Expense()
     }
 }
