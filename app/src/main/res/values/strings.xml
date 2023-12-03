@@ -3,5 +3,5 @@
 
     <string name="home">Home</string>
     <string name="stats">Stats</string>
-    <string name="accounts">Accounts</string>
+    <string name="settings">Settings</string>
 </resources>
