@@ -57,13 +57,13 @@ import androidx.compose.ui.unit.sp
 import java.util.Calendar
 import java.util.Date
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Income(onSwitchScreen: () -> Unit) {
+fun Graph() {
     Column (
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
+            .background(Color(0xEEEDEDFF))
     ) {
         Box(
             modifier = Modifier
@@ -155,101 +155,24 @@ fun Income(onSwitchScreen: () -> Unit) {
                 }
             }
         }
+        Spacer(modifier = Modifier.height(40.dp))
+        Image (
+            painter = painterResource(id = R.drawable.piechart),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
 
+        )
+        Spacer(modifier = Modifier.height(30.dp))
+        Image (
+            painter = painterResource(id = R.drawable.food),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
 
-        Row {
-            showDatePicker()
-        }
+        )
 
-        val amountText = remember { mutableStateOf("") }
-        val categoryText = remember { mutableStateOf("") }
-        val accountText = remember { mutableStateOf("") }
-        val noteText = remember { mutableStateOf("") }
-        val descriptionText = remember { mutableStateOf("") }
-
-        for (pair in listOf(
-            "Amount" to amountText,
-        )) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-            ) {
-                Text(
-                    text = pair.first,
-                    modifier = Modifier
-                        .width(100.dp)
-                        .alignByBaseline()
-                )
-                OutlinedTextField(
-                    value = pair.second.value,
-                    label = {Text(pair.first)},
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(85.dp)
-                        .fillMaxWidth()
-                        .alignByBaseline()
-                        .background(Color.White)
-                        .padding(8.dp),
-                    onValueChange = { newText -> pair.second.value = newText },
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Number),
-
-                    )
-            }
-        }
-        for (pair in listOf(
-            "Category" to categoryText,
-            "Account" to accountText,
-            "Note" to noteText,
-            "Description" to descriptionText
-        )) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-            ) {
-                Text(
-                    text = pair.first,
-                    modifier = Modifier
-                        .width(100.dp)
-                        .padding(end = 4.dp)
-                        .alignByBaseline()
-                )
-                OutlinedTextField(
-                    value = pair.second.value,
-                    label = {Text(pair.first)},
-                    onValueChange = { newText -> pair.second.value = newText },
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(85.dp)
-                        .fillMaxWidth()
-                        .alignByBaseline()
-                        .background(Color.White)
-                        .padding(8.dp),
-
-                    )
-            }
-        }
-
-        Spacer(modifier = Modifier.size(40.dp))
-
-        Row(modifier = Modifier
-            .padding(horizontal = 50.dp)){
-            Button(onClick = { /*TODO*/ },
-                modifier = Modifier.width(100.dp),
-                colors = ButtonDefaults.buttonColors(containerColor =  Color(0xFFEA4335))
-            ) {
-                Text(text = "Save")
-            }
-
-            Spacer(modifier = Modifier.size(40.dp))
-
-            Button(onClick = { /*TODO*/ },
-                modifier = Modifier.width(150.dp),
-                colors = ButtonDefaults.buttonColors(containerColor =  Color.Black)) {
-                Text(text = "Continue")
-            }
-        }
     }
 }
