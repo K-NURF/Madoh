@@ -2,4 +2,9 @@
 <resources>
 
     <style name="Theme.Madoh" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Madoh.NoActionBar" parent="Theme.Madoh">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>
