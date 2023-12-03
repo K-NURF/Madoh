@@ -277,10 +277,11 @@ fun updateTransactions(date: MutableState<String>,
                        accountText: MutableState<String>,
                        noteText:MutableState<String>)
 {
-    val double =  SimpleDateFormat("dd/MM/yyyy").parse(date.value)
-    if (double != null) {
+    val double =  SimpleDateFormat("dd/MM/yyyy")
+    if (date != null) {
+        val newDate =  double.parse(date.value)
         addExpense(
-            date = double,
+            date = newDate,
             amount = amountText.value.toDouble(),
             category = categoryText.value,
             account = accountText.value,
