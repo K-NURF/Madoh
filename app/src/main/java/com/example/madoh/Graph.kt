@@ -189,7 +189,7 @@ fun Graph(it: PaddingValues, navController: NavHostController = rememberNavContr
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp)
+                .height(300.dp)
 
         )
 
