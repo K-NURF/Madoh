@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -74,7 +75,7 @@ fun Expense(it: PaddingValues, navController: NavHostController = rememberNavCon
                 .height(100.dp)
                 .background(Color(0xFF0247FE))
                 .fillMaxWidth()
-//                .padding(vertical = 8.dp)
+//                .padding(horizontal = 8.dp)
         ) {
             Column {
                 Row(
@@ -124,15 +125,15 @@ fun Expense(it: PaddingValues, navController: NavHostController = rememberNavCon
                             }
                             .weight(1f) // Take up equal width
                             .height(55.dp) // Adjust the size of the individual boxes
-                            .background(Color(0xFF0247FE))
+                            .background(Color(R.color.blue_100))
                             .border(
-                                width = 2.dp,
+                                width = 1.dp,
                                 color = Color.White,
-                                shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
                             )
+                        .padding(end = 8.dp)
                     ) {
                         Text(
-                            text = "Income",
+                            text = "Expense",
                             color = Color.White,
                             modifier = Modifier
                                 .padding(8.dp)
@@ -148,13 +149,12 @@ fun Expense(it: PaddingValues, navController: NavHostController = rememberNavCon
                             .height(55.dp) // Adjust the size of the individual boxes
                             .background(Color(0xFF0247FE))
                             .border(
-                                width = 2.dp,
+                                width = 1.dp,
                                 color = Color.White,
-                                shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
                             )
                     ) {
                         Text(
-                            text = "Expense",
+                            text = "Income",
                             color = Color.White,
                             modifier = Modifier
                                 .padding(8.dp)
@@ -170,15 +170,12 @@ fun Expense(it: PaddingValues, navController: NavHostController = rememberNavCon
         }
 
         val amountText = remember { mutableStateOf("") }
-        val feesText = remember { mutableStateOf("") }
         val categoryText = remember { mutableStateOf("") }
         val accountText = remember { mutableStateOf("") }
         val noteText = remember { mutableStateOf("") }
-        val descriptionText = remember { mutableStateOf("") }
 
         for (pair in listOf(
             "Amount" to amountText,
-            "Fees" to feesText,
         )) {
             Row(
                 modifier = Modifier
@@ -213,7 +210,6 @@ fun Expense(it: PaddingValues, navController: NavHostController = rememberNavCon
             "Category" to categoryText,
             "Account" to accountText,
             "Note" to noteText,
-            "Description" to descriptionText
         )) {
             Row(
                 modifier = Modifier
@@ -286,9 +282,7 @@ fun showDatePicker(){
         }, year, month, day
     )
 
-    Row(
-
-    ) {
+    Row() {
 
         Text(text = "Date",
             style = TextStyle(

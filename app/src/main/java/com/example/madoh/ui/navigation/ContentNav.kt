@@ -8,8 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.madoh.Expense
 import com.example.madoh.ExpensePage
+import com.example.madoh.IncomePage
 import com.example.madoh.Welcome
 import com.example.madoh.ui.navigation.Routes.NAV_ACC
 import com.example.madoh.ui.navigation.Routes.NAV_EXPENSE
@@ -42,7 +42,9 @@ fun Content () {
             composable(NAV_EXPENSE){
                 ExpensePage(navController)
             }
-            composable(NAV_INCOME){}
+            composable(NAV_INCOME){
+                IncomePage(navController)
+            }
         }
 
     }
