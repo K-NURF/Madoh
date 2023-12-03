@@ -9,6 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.madoh.ExpensePage
+import com.example.madoh.Graph
+import com.example.madoh.GraphPage
 import com.example.madoh.IncomePage
 import com.example.madoh.Welcome
 import com.example.madoh.ui.navigation.Routes.NAV_ACC
@@ -33,9 +35,11 @@ fun Content () {
                 Welcome(navController)
             }
             composable(NAV_STATS){
+                GraphPage(navController)
+            }
+            composable(NAV_ACC){
 
             }
-            composable(NAV_ACC){}
             composable(NAV_TRANSACTION){
                 ExpensePage(navController)
             }
