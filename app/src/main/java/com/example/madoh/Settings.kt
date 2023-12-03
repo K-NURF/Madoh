@@ -3,30 +3,36 @@ package com.example.madoh
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.ThumbUp
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.madoh.ui.theme.MadohTheme
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.Icon
-
 
 // Entry point of the app
 class Settings : ComponentActivity() {
@@ -62,24 +68,14 @@ fun SettingBody() {
             cells = GridCells.Fixed(3),
             modifier = Modifier.fillMaxWidth()
         ) {
-            item {
-                SettingsRow(title = "Account", icon = Icons.Default.AccountCircle, action = {})
+            items(3) { index ->
+                when (index) {
+                    0 -> SettingsRow(title = "Account", icon = Icons.Default.AccountCircle, action = {})
+                    1 -> SettingsRow(title = "Home", icon = Icons.Default.Home, action = {})
+                    2 -> SettingsRow(title = "Configuration", icon = Icons.Default.Settings, action = {})
+                }
             }
-            item {
-                SettingsRow(title = "Home", icon = Icons.Default.Home, action = {})
-            }
-            item {
-                SettingsRow(title = "Configuration", icon = Icons.Default.Settings, action = {})
-            }
-            item {
-                SettingsRow(title = "Style Feedback", icon = Icons.Default.Star, action = {})
-            }
-            item {
-                SettingsRow(title = "PC Manager",  icon = Icons.Default.Star, action = {})
-            }
-            // Add more items as needed
         }
-
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -99,12 +95,9 @@ fun SettingBody() {
                     3 -> SettingsRow(title = "Backup", icon = Icons.Default.AccountCircle, action = {})
                     4 -> SettingsRow(title = "Recommend", icon = Icons.Default.ThumbUp, action = {})
                     5 -> SettingsRow(title = "Accounts", icon = Icons.Default.AccountCircle, action = {})
-                    // Add more items as needed
                 }
             }
         }
-
-
 
         Spacer(modifier = Modifier.height(30.dp))
     }
@@ -147,7 +140,7 @@ fun SettingsRow(title: String, icon: ImageVector, action: () -> Unit) {
 // Preview for the Settings screen
 @Preview(showBackground = true)
 @Composable
-fun SettingsPreview() {
+fun SettingsScreenPreview() {
     MadohTheme {
         SettingBody()
     }
