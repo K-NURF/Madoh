@@ -14,5 +14,5 @@ sealed class NavItem(
 ) {
     object Home: NavItem(R.string.home, R.drawable.ic_home, NAV_HOME)
     object Stats: NavItem(R.string.stats, R.drawable.ic_stats, NAV_STATS)
-    object Acc: NavItem(R.string.settings, R.drawable.ic_acc, NAV_SETTINGS)
+    object Settings: NavItem(R.string.settings, R.drawable.ic_settings, NAV_SETTINGS)
 }
