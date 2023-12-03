@@ -57,7 +57,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.madoh.ui.navigation.BottomNav
+import com.example.madoh.ui.navigation.Routes
+import com.example.madoh.ui.navigation.Routes.NAV_EXPENSE
+import com.example.madoh.ui.navigation.Routes.NAV_INCOME
 import java.util.Calendar
 import java.util.Date
 
@@ -68,13 +72,13 @@ fun ExpensePage(navController: NavHostController){
     Scaffold(
         bottomBar = { BottomNav(navController = navController) }
     ) {
-        Expense(it)
+        Expense(it, navController)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Expense(it: PaddingValues) {
+fun Expense(it: PaddingValues, navController: NavHostController = rememberNavController()) {
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -130,7 +134,9 @@ fun Expense(it: PaddingValues) {
                 ) {
                     Box(
                         modifier = Modifier
-                            .clickable { }
+                            .clickable {
+                                navController.navigate(NAV_EXPENSE)
+                            }
                             .weight(1f) // Take up equal width
                             .height(55.dp) // Adjust the size of the individual boxes
                             .background(Color.Blue)
@@ -150,7 +156,9 @@ fun Expense(it: PaddingValues) {
 
                     Box(
                         modifier = Modifier
-                            .clickable { }
+                            .clickable {
+                                navController.navigate(NAV_INCOME)
+                            }
                             .weight(1f) // Take up equal width
                             .height(55.dp) // Adjust the size of the individual boxes
                             .background(Color.Blue)

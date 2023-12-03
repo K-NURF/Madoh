@@ -5,4 +5,6 @@ object Routes {
     const val NAV_STATS = "stats"
     const val NAV_ACC = "accounts"
     const val NAV_TRANSACTION = "addTransaction"
+    const val NAV_EXPENSE = "addExpense"
+    const val NAV_INCOME = "addIncome"
 }
