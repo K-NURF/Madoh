@@ -59,6 +59,12 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.TopAppBar
+
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -263,32 +269,6 @@ fun TransactionItem(transaction: Transaction) {
         )
     }
 }
-@Composable
-fun SettingsUI() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            // curved corner just at the bottom
-            //.clip(RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp))
-            .padding(bottom = 8.dp)
-            .background(Color.Blue),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        // Centered Text.
-        Text(
-            text = "Settings",
-            color = Color.White,
-            modifier = Modifier.padding(16.dp),
-            textAlign = TextAlign.Center,
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SettingPreview() {
-    SettingsUI()
-}
 
 @Composable
 fun PreviewTransactionCard() {
@@ -298,10 +278,9 @@ fun PreviewTransactionCard() {
     }
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewSetting(){
-    SettingsUI()
-}
-
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewSetting(){
+//    SettingsUI()
+//}
