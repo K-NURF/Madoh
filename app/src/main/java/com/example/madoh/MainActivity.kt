@@ -147,6 +147,15 @@ val days = mutableListOf<TransactionDay>(
     FillerData.transactionsSample[5],
     FillerData.transactionsSample[6],
 )
+
+val daysR = days.asReversed()
+
+fun addExpense(date: Date, amount: Double, category: String, account: String, note: String){
+    val transaction = Transaction(amount, category, account, note)
+    val transactionDay = TransactionDay(date, listOf( transaction))
+    days.add(transactionDay)
+}
+
 @Composable
 fun Transactions(it: PaddingValues){
 Box (modifier = Modifier.padding(it)){
@@ -161,7 +170,7 @@ Box (modifier = Modifier.padding(it)){
                 style = MaterialTheme.typography.headlineSmall,
             )
         }
-        items(days) { day ->
+        items(daysR) { day ->
             TransactionCard(day)
         }
     }

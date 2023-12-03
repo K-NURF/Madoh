@@ -3,6 +3,7 @@ package com.example.madoh
 import android.app.DatePickerDialog
 import androidx.compose.runtime.Composable
 import android.widget.DatePicker
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -29,6 +30,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -48,6 +50,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.madoh.ui.navigation.BottomNav
 import com.example.madoh.ui.navigation.Routes.NAV_EXPENSE
 import com.example.madoh.ui.navigation.Routes.NAV_INCOME
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 
@@ -61,6 +64,7 @@ fun ExpensePage(navController: NavHostController){
         Expense(it, navController)
     }
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -130,7 +134,7 @@ fun Expense(it: PaddingValues, navController: NavHostController = rememberNavCon
                                 width = 1.dp,
                                 color = Color.White,
                             )
-                        .padding(end = 8.dp)
+                            .padding(end = 8.dp)
                     ) {
                         Text(
                             text = "Expense",
@@ -165,14 +169,17 @@ fun Expense(it: PaddingValues, navController: NavHostController = rememberNavCon
         }
 
 
-        Row {
-            showDatePicker()
-        }
+
 
         val amountText = remember { mutableStateOf("") }
         val categoryText = remember { mutableStateOf("") }
         val accountText = remember { mutableStateOf("") }
         val noteText = remember { mutableStateOf("") }
+        val date = remember { mutableStateOf("") }
+
+        Row {
+            showDatePicker(date)
+        }
 
         for (pair in listOf(
             "Amount" to amountText,
@@ -242,7 +249,9 @@ fun Expense(it: PaddingValues, navController: NavHostController = rememberNavCon
 
         Row(modifier = Modifier
             .padding(horizontal = 50.dp)){
-            Button(onClick = { /*TODO*/ },
+            Button(onClick = {
+                    updateTransactions(date, amountText, categoryText, accountText, noteText)
+            },
                 modifier = Modifier.width(100.dp),
                 colors = ButtonDefaults.buttonColors(containerColor =  Color(0xFFEA4335))
             ) {
@@ -251,7 +260,9 @@ fun Expense(it: PaddingValues, navController: NavHostController = rememberNavCon
 
             Spacer(modifier = Modifier.size(40.dp))
 
-            Button(onClick = { /*TODO*/ },
+            Button(onClick = {
+                             println(date.value)
+                             },
                 modifier = Modifier.width(150.dp),
                 colors = ButtonDefaults.buttonColors(containerColor =  Color.Black)) {
                 Text(text = "Continue")
@@ -260,8 +271,27 @@ fun Expense(it: PaddingValues, navController: NavHostController = rememberNavCon
     }
 }
 
+fun updateTransactions(date: MutableState<String>,
+                       amountText: MutableState<String>,
+                       categoryText: MutableState<String>,
+                       accountText: MutableState<String>,
+                       noteText:MutableState<String>)
+{
+    val double =  SimpleDateFormat("dd/MM/yyyy").parse(date.value)
+    if (double != null) {
+        addExpense(
+            date = double,
+            amount = amountText.value.toDouble(),
+            category = categoryText.value,
+            account = accountText.value,
+            note = noteText.value)
+    }
+
+}
+
+
 @Composable
-fun showDatePicker(){
+fun showDatePicker(date: MutableState<String>){
 
     val context = LocalContext.current
     val year: Int
@@ -274,7 +304,6 @@ fun showDatePicker(){
     day = calendar.get(Calendar.DAY_OF_MONTH)
     calendar.time = Date()
 
-    val date = remember { mutableStateOf("") }
     val datePickerDialog = DatePickerDialog(
         context,
         { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->

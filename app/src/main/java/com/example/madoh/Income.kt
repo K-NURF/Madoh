@@ -174,15 +174,18 @@ fun Income(it: PaddingValues, navController: NavHostController = rememberNavCont
         }
 
 
-        Row {
-            showDatePicker()
-        }
+
 
         val amountText = remember { mutableStateOf("") }
         val categoryText = remember { mutableStateOf("") }
         val accountText = remember { mutableStateOf("") }
         val noteText = remember { mutableStateOf("") }
+        val dateText = remember { mutableStateOf("") }
 
+
+        Row {
+            showDatePicker(dateText)
+        }
         for (pair in listOf(
             "Amount" to amountText,
         )) {
