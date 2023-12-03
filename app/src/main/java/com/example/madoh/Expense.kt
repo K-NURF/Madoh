@@ -30,6 +30,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -68,7 +69,7 @@ fun Expense() {
         Box(
             modifier = Modifier
                 .height(100.dp)
-                .background(Color.Blue)
+                .background(Color(0xFF0247FE))
                 .fillMaxWidth()
 //                .padding(vertical = 8.dp)
         ) {
@@ -92,7 +93,7 @@ fun Expense() {
                             .width(70.dp)
                             .height(35.dp) // Adjust the size of the box as needed
                             .background(
-                                color = Color.Blue,
+                                color = Color(0xFF0247FE),
                                 shape = RoundedCornerShape(16.dp) // Adjust the corner radius for rounded edges
                             )
                             .border(
@@ -115,10 +116,10 @@ fun Expense() {
                 ) {
                     Box(
                         modifier = Modifier
-                            .clickable { }
+                            .clickable {  }
                             .weight(1f) // Take up equal width
                             .height(55.dp) // Adjust the size of the individual boxes
-                            .background(Color.Blue)
+                            .background(Color(0xFF0247FE))
                             .border(
                                 width = 2.dp,
                                 color = Color.White,
@@ -126,7 +127,7 @@ fun Expense() {
                             )
                     ) {
                         Text(
-                            text = "Box 1",
+                            text = "Income",
                             color = Color.White,
                             modifier = Modifier
                                 .padding(8.dp)
@@ -138,7 +139,7 @@ fun Expense() {
                             .clickable { }
                             .weight(1f) // Take up equal width
                             .height(55.dp) // Adjust the size of the individual boxes
-                            .background(Color.Blue)
+                            .background(Color(0xFF0247FE))
                             .border(
                                 width = 2.dp,
                                 color = Color.White,
@@ -146,7 +147,7 @@ fun Expense() {
                             )
                     ) {
                         Text(
-                            text = "Box 2",
+                            text = "Expense",
                             color = Color.White,
                             modifier = Modifier
                                 .padding(8.dp)
@@ -161,12 +162,12 @@ fun Expense() {
             showDatePicker()
         }
 
-        val amountText = remember { mutableStateOf("Amount") }
-        val feesText = remember { mutableStateOf("Fees") }
-        val categoryText = remember { mutableStateOf("Category") }
-        val accountText = remember { mutableStateOf("Account") }
-        val noteText = remember { mutableStateOf("Note") }
-        val descriptionText = remember { mutableStateOf("Description") }
+        val amountText = remember { mutableStateOf("") }
+        val feesText = remember { mutableStateOf("") }
+        val categoryText = remember { mutableStateOf("") }
+        val accountText = remember { mutableStateOf("") }
+        val noteText = remember { mutableStateOf("") }
+        val descriptionText = remember { mutableStateOf("") }
 
         for (pair in listOf(
             "Amount" to amountText,
@@ -181,20 +182,24 @@ fun Expense() {
                     text = pair.first,
                     modifier = Modifier
                         .width(100.dp)
+                        .alignByBaseline()
                         .padding(end = 4.dp)
                 )
-                TextField(
+                OutlinedTextField(
                     value = pair.second.value,
+                    label = {Text(pair.first)},
                     onValueChange = { newText -> pair.second.value = newText },
                     keyboardOptions = KeyboardOptions.Default.copy(
                         keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .weight(1f)
-                        .height(65.dp)
+                        .height(85.dp)
                         .fillMaxWidth()
+                        .alignByBaseline()
                         .background(Color.White)
                         .padding(8.dp),
-                )
+
+                    )
             }
         }
         for (pair in listOf(
@@ -213,14 +218,17 @@ fun Expense() {
                     modifier = Modifier
                         .width(100.dp)
                         .padding(end = 4.dp)
+                        .alignByBaseline()
                 )
-                TextField(
+                OutlinedTextField(
                     value = pair.second.value,
                     onValueChange = { newText -> pair.second.value = newText },
+                    label = {Text(pair.first)},
                     modifier = Modifier
                         .weight(1f)
-                        .height(65.dp)
+                        .height(85.dp)
                         .fillMaxWidth()
+                        .alignByBaseline()
                         .background(Color.White)
                         .padding(8.dp),
                 )
@@ -233,7 +241,7 @@ fun Expense() {
             .padding(horizontal = 50.dp)){
             Button(onClick = { /*TODO*/ },
                 modifier = Modifier.width(100.dp),
-                colors = ButtonDefaults.buttonColors(containerColor =  Color(0xFFFFA500))
+                colors = ButtonDefaults.buttonColors(containerColor =  Color(0xFFEA4335))
             ) {
                 Text(text = "Save")
             }
