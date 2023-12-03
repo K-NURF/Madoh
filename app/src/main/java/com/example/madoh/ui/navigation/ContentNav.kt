@@ -12,11 +12,13 @@ import com.example.madoh.ExpensePage
 import com.example.madoh.Graph
 import com.example.madoh.GraphPage
 import com.example.madoh.IncomePage
+import com.example.madoh.SignUpPage
 import com.example.madoh.Welcome
 import com.example.madoh.ui.navigation.Routes.NAV_ACC
 import com.example.madoh.ui.navigation.Routes.NAV_EXPENSE
 import com.example.madoh.ui.navigation.Routes.NAV_HOME
 import com.example.madoh.ui.navigation.Routes.NAV_INCOME
+import com.example.madoh.ui.navigation.Routes.NAV_LOGIN
 import com.example.madoh.ui.navigation.Routes.NAV_STATS
 import com.example.madoh.ui.navigation.Routes.NAV_TRANSACTION
 
@@ -29,7 +31,7 @@ fun Content () {
         color = MaterialTheme.colorScheme.background
     ) {
         NavHost(navController = navController,
-            startDestination = NAV_HOME,
+            startDestination = NAV_LOGIN,
             ) {
             composable(NAV_HOME){
                 Welcome(navController)
@@ -37,8 +39,8 @@ fun Content () {
             composable(NAV_STATS){
                 GraphPage(navController)
             }
-            composable(NAV_ACC){
-
+            composable(NAV_LOGIN){
+                SignUpPage(navController)
             }
             composable(NAV_TRANSACTION){
                 ExpensePage(navController)

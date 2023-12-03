@@ -7,4 +7,5 @@ object Routes {
     const val NAV_TRANSACTION = "addTransaction"
     const val NAV_EXPENSE = "addExpense"
     const val NAV_INCOME = "addIncome"
+    const val NAV_LOGIN = "signUp"
 }
