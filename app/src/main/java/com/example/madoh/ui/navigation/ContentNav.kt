@@ -19,12 +19,14 @@ import com.example.madoh.ExpensePage
 import com.example.madoh.Graph
 import com.example.madoh.GraphPage
 import com.example.madoh.IncomePage
+import com.example.madoh.SettingsPage
 import com.example.madoh.SignUpPage
 import com.example.madoh.Welcome
 import com.example.madoh.ui.navigation.Routes.NAV_EXPENSE
 import com.example.madoh.ui.navigation.Routes.NAV_HOME
 import com.example.madoh.ui.navigation.Routes.NAV_INCOME
 import com.example.madoh.ui.navigation.Routes.NAV_LOGIN
+import com.example.madoh.ui.navigation.Routes.NAV_SETTINGS
 import com.example.madoh.ui.navigation.Routes.NAV_STATS
 import com.example.madoh.ui.navigation.Routes.NAV_TRANSACTION
 
@@ -76,6 +78,9 @@ fun Content () {
             }
             composable(NAV_INCOME){
                 IncomePage(navController)
+            }
+            composable(NAV_SETTINGS){
+                SettingsPage(navController)
             }
         }
 
